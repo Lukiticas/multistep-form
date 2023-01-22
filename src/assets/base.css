@@ -1,0 +1,69 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* COLORS */
+:root {
+
+  /*LIGHT MODE*/
+  --marineblue: hsl(213, 96%, 18%);
+  --purplishblue: hsl(243, 100%, 62%);
+  --pastelblue: hsl(228, 100%, 84%);
+  --lightblue: hsl(206, 94%, 87%);
+  --strawberryred: hsl(354, 84%, 57%);
+
+  --coolgray: hsl(231, 11%, 63%);
+  --lightgray: hsl(229, 24%, 87%);
+  --magnolia: hsl(217, 100%, 97%);
+  --alabaster: hsl(231, 100%, 99%);
+  --white: hsl(0, 0%, 100%);
+
+  /*DARK MODE*/
+  /*=========*/
+
+  font-family: Ubuntu, sans-serif;
+}
+
+:root.light {
+  --bg-primary: var(--magnolia);
+  --bg-secundary: var(--white);
+  --bg-terciary: var(--lightgray);
+  --bg-accent: var(--lightblue);
+  --w-primary: var(--marineblue);
+  --w-secundary: var(--coolgray);
+  --w-terciary: var(--white);
+
+  --accent: var(--purplishblue);
+  --accent-error: var(--strawberryred);
+  --accent-sucess: var(--purplishblue);
+
+}
+
+:root.dark {
+  /*TODO Create new dark mode pallete*/
+  --bg-primary: var(--magnolia);
+  --bg-secundary: var(--white);
+  --bg-terciary: var(--lightgray);
+  --bg-accent: var(--lightblue);
+  --w-primary: var(--marineblue);
+  --w-secundary: var(--coolgray);
+  --w-terciary: var(--white);
+
+  --accent: var(--purplishblue);
+  --accent-error: var(--strawberryred);
+  --accent-sucess: var(--purplishblue);
+}
+
+
+body {
+  background-color: var(--bg-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

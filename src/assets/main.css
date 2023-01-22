@@ -1,0 +1,58 @@
+@import './reset.css';
+@import './base.css';
+
+.bg-primary {
+    background-color: var(--bg-primary);
+}
+
+.bg-secundary {
+    background-color: var(--bg-secundary);
+}
+
+.bg-terciary {
+    background-color: var(--bg-terciary);
+}
+
+.bg-quartenary {
+    background-color: var(--w-primary);
+}
+
+.bg-accent {
+    background-color: var(--bg-accent);
+}
+
+.text-primary {
+    color: var(--w-primary);
+}
+
+.text-secundary {
+    color: var(--w-secundary);
+}
+
+.text-terciary {
+    color: var(--w-terciary);
+}
+
+.text-accent {
+    color: var(--bg-accent);
+}
+
+.text-error {
+    color: var(--accent-error)
+}
+
+.text-sucess {
+    color: var(--accent-sucess)
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.semi-bold {
+    font-weight: 500;
+}
+
+.regular {
+    font-weight: 400;
+}
