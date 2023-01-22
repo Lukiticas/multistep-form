@@ -5,9 +5,20 @@
   margin: 0;
 }
 
+/* reponsive */
+:root {
+  font-size: clamp(13px, 1.5vw, 18px);
+  --bk-md: 800px;
+}
+
+@media screen and (max-width: 800px) {
+  :root {
+    font-size: 16px;
+  }
+}
+
 /* COLORS */
 :root {
-
   /*LIGHT MODE*/
   --marineblue: hsl(213, 96%, 18%);
   --purplishblue: hsl(243, 100%, 62%);
@@ -30,7 +41,8 @@
 :root.light {
   --bg-primary: var(--magnolia);
   --bg-secundary: var(--white);
-  --bg-terciary: var(--lightgray);
+  --bg-terciary: var(--alabaster);
+  --bg-quarternary: var(--lightgray);
   --bg-accent: var(--lightblue);
   --w-primary: var(--marineblue);
   --w-secundary: var(--coolgray);
@@ -46,7 +58,8 @@
   /*TODO Create new dark mode pallete*/
   --bg-primary: var(--magnolia);
   --bg-secundary: var(--white);
-  --bg-terciary: var(--lightgray);
+  --bg-terciary: var(--alabaster);
+  --bg-quarternary: var(--lightgray);
   --bg-accent: var(--lightblue);
   --w-primary: var(--marineblue);
   --w-secundary: var(--coolgray);

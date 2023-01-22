@@ -14,7 +14,7 @@
 <template>
   <header class="heading-title">
     <h2 class="title bold text-primary">{{ title }}</h2>
-    <p class="description semi-bold text-secundary">{{ description }}</p>
+    <p class="description regular text-secundary">{{ description }}</p>
   </header>
 </template>
 
@@ -24,10 +24,10 @@
   }
 
   .title {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .description {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 </style>

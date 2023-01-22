@@ -48,6 +48,7 @@
 
 <style scoped>
   .form-input {
+    font-size: 1rem;
     display: flex;
     flex-flow: column nowrap;
     gap: 0.3rem;
@@ -60,9 +61,15 @@
     align-items: center;
   }
 
+  .form-input__label,
+  .form-input__error {
+    font-size: 1rem;
+  }
+
   .form-input__input {
+    font-size: 1rem;
     border: none;
-    outline: var(--bg-terciary) solid 0.1rem;
+    outline: var(--bg-quarternary) solid 0.1rem;
     border-radius: 0.5rem;
     padding: 0.9rem 1rem;
 
@@ -70,6 +77,7 @@
   }
 
   .form-input__input::placeholder {
+    font-size: 1rem;
     color: var(--w-secundary);
   }
 

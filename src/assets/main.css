@@ -33,6 +33,10 @@
     color: var(--w-terciary);
 }
 
+.text-quartenary {
+    color: var(--coolgray)
+}
+
 .text-accent {
     color: var(--bg-accent);
 }
