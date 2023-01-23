@@ -4,172 +4,89 @@
   import PersonalInfo from "@/components/screens/PersonalInfo.vue";
   import SectionStepper from "@/components/SectionStepper.vue";
   import SelectPlan from "@/components/screens/SelectPlan.vue";
-  import { computed, reactive, ref } from "vue";
   import AddOns from "@/components/screens/AddOns.vue";
+  import { plans, addons } from "@/utils/data";
+  import { useCheckoutStore } from "@/stores/checkoutStore";
+  import { provide } from "vue";
+  import useStepper from "@/directives/useStepper";
+  import SummarySection from "@/components/screens/SummarySection.vue";
 
-  const plans = [
+  const store = useCheckoutStore();
+  const {
+    currentStepItem,
+    isLastStep,
+    handleGoBack,
+    isFirstStep,
+    handleIsValid,
+    currentStep,
+    steps,
+  } = useStepper([
     {
-      title: "Arcade",
-      icon: "icon-arcade.svg",
-      pricing: {
-        monthly: { value: 9, promo: "" },
-        yearly: { value: 90, promo: "2 months free" },
-      },
-    },
-    {
-      title: "Advanced",
-      icon: "icon-advanced.svg",
-      pricing: {
-        monthly: { value: 12, promo: "" },
-        yearly: { value: 120, promo: "2 months free" },
-      },
-    },
-    {
-      title: "Pro",
-      icon: "icon-pro.svg",
-      pricing: {
-        monthly: { value: 15, promo: "" },
-        yearly: { value: 150, promo: "2 months free" },
-      },
-    },
-  ];
-
-  const addons = [
-    {
-      title: "Online Service",
-      subtitle: "Acess to multiplayer games",
-      pricing: {
-        monthly: 1,
-        yearly: 10,
-      },
+      title: "your info",
+      sectionTitle: "Personal info",
+      description: "Please provide your name, email address, and phone number",
+      formName: "form-main",
     },
     {
-      title: "Larger Storage",
-      subtitle: "Extra 1TB of cloud save",
-      pricing: {
-        monthly: 2,
-        yearly: 20,
-      },
+      title: "Select plan",
+      sectionTitle: "Select your plan",
+      description: "You have the options of monthly or yearly billing",
+      formName: "select-plan-form",
     },
     {
-      title: "Customizable Profile",
-      subtitle: "Custom themes on your profile",
-      pricing: {
-        monthly: 2,
-        yearly: 20,
-      },
+      title: "Add-ons",
+      sectionTitle: "Pick add-ons",
+      description: "Add-ons help enhance your gaming experience.",
+      formName: "add-ons-form",
     },
-  ];
-
-  const stepper = reactive({
-    steps: [
-      {
-        title: "your info",
-        sectionTitle: "Personal info",
-        description:
-          "Please provide your name, email address, and phone number",
-        isValid: false,
-        formName: "form-main",
-      },
-      {
-        title: "Select plan",
-        sectionTitle: "Select your plan",
-        description: "You have the options of monthly or yearly billing",
-        isValid: false,
-        formName: "select-plan-form",
-      },
-      {
-        title: "Add-ons",
-        sectionTitle: "Pick add-ons",
-        description: "Add-ons help enhance your gaming experience.",
-        isValid: false,
-        formName: "add-ons-form",
-      },
-    ],
-
-    data: {
-      name: "",
-      email: "",
-      number: "",
+    {
+      title: "Summary",
+      sectionTitle: "Finishing up",
+      description: "Double check everything looks OK before confirming",
+      formName: "summary-form",
     },
+  ]);
 
-    currentStep: 0,
-  });
-
-  const retrivesStep = (n) => {
-    stepper.currentStep = stepper.currentStep - n;
-  };
-
-  const evaluateNext = () => {
-    if (
-      !stepper.steps[stepper.currentStep] &&
-      !stepper.steps[stepper.currentStep].isValid
-    )
-      return;
-    stepper.currentStep = stepper.currentStep + 1;
-    console.log(stepper.data);
-  };
-
-  const handleIsValid = (e) => {
-    stepper.steps[stepper.currentStep].isValid = !!e;
-    if (stepper.currentStep === stepper.steps.length - 1) return;
-    evaluateNext();
-  };
-
-  const isYearlyOrMonthly = ref(true);
-
-  const period = computed(() =>
-    isYearlyOrMonthly.value ? ["monthly", "mo"] : ["yearly", "yr"]
-  );
+  provide("store", store);
 </script>
 
 <template>
   <main class="center-on-screen">
     <section class="app-main bg-secundary">
       <SectionStepper
-        :steps="stepper.steps"
-        :current-index="stepper.currentStep"></SectionStepper>
+        :steps="steps"
+        :current-index="currentStep"></SectionStepper>
       <section class="main-content">
         <div class="content">
           <SectionHeading
-            :title="stepper.steps[stepper.currentStep].sectionTitle"
-            :description="
-              stepper.steps[stepper.currentStep].description
-            "></SectionHeading>
+            :title="currentStepItem.sectionTitle"
+            :description="currentStepItem.description"></SectionHeading>
 
           <PersonalInfo
-            v-if="stepper.currentStep === 0"
-            :data="stepper.data"
-            @update-data="(e) => (stepper.data = e)"
+            v-if="currentStep === 0"
             @is-valid="handleIsValid"></PersonalInfo>
           <SelectPlan
-            v-else-if="stepper.currentStep === 1"
-            v-model:select-billing="isYearlyOrMonthly"
+            v-else-if="currentStep === 1"
             @is-valid="handleIsValid"
-            :period="period"
             :plans="plans"></SelectPlan>
           <AddOns
-            v-else-if="stepper.currentStep === 2"
-            :add-ons="addons"
-            :period="period"></AddOns>
+            v-else-if="currentStep === 2"
+            @is-valid="handleIsValid"
+            :add-ons="addons"></AddOns>
+          <SummarySection v-else-if="currentStep === 3"></SummarySection>
         </div>
         <footer class="bottom-navegation bg-secundary">
           <BaseButton
-            :show="stepper.currentStep === 0"
-            form="form-main"
+            :show="isFirstStep"
             title="Go Back"
             type="text"
-            @click="retrivesStep(1)"
+            @click="handleGoBack"
             style-type="previous"></BaseButton>
           <BaseButton
-            :form="stepper.steps[stepper.currentStep].formName"
+            :form="currentStepItem.formName"
             type="submit"
             style-type="next"
-            :title="
-              stepper.currentStep === stepper.steps.length - 1
-                ? 'Confirm'
-                : 'Next Step'
-            ">
+            :title="isLastStep ? 'Confirm' : 'Next Step'">
           </BaseButton>
         </footer>
       </section>
@@ -220,11 +137,15 @@
       padding: 0;
     }
 
+    .center-on-screen {
+      min-height: 0;
+    }
+
     .content {
       background-color: var(--bg-secundary);
       margin-inline: 1.2rem;
       margin-block-start: -3.5rem;
-      padding: 1.3rem 1.8rem;
+      padding: 1.5rem 1.3rem;
       border-radius: 1rem;
       z-index: 1000;
     }

@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, computed } from "vue";
+  import { watch, ref, computed, inject, onMounted } from "vue";
   import PlanCard from "@/components/PlanCard.vue";
   import BillingSelector from "@/components/BillingSelector.vue";
 
@@ -8,29 +8,21 @@
       type: Object,
       required: true,
     },
-    selectBilling: {
-      type: Boolean,
-      required: true,
-    },
-    period: {
-      type: Array,
-      required: true,
-    },
   });
 
-  const emit = defineEmits(["isValid", "update:select-billing"]);
+  const store = inject("store");
+  const emit = defineEmits(["isValid"]);
 
   const cardSelected = ref([]);
 
   const cards = computed(() => {
     if (!props.plans) return [];
-
     return props.plans.map((plan) => ({
       title: plan.title,
       iconName: plan.icon,
-      period: props.period[1],
-      pricing: plan.pricing[props.period[0]].value,
-      promo: plan.pricing[props.period[0]].promo,
+      period: store.period[1],
+      pricing: plan.pricing[store.period[0]].value,
+      promo: plan.pricing[store.period[0]].promo,
     }));
   });
 
@@ -43,9 +35,17 @@
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!cardSelected.value) return;
-    emit("is-valid", cardSelected);
+    if (!cardSelected.value.length) return;
+    emit("is-valid", true);
   };
+
+  watch(cardSelected, () => {
+    store.planSelected = cardSelected.value;
+  });
+
+  onMounted(() => {
+    cardSelected.value = store.planSelected || [];
+  });
 </script>
 <template>
   <section class="select-plan-section">
@@ -72,8 +72,7 @@
       </label>
     </form>
     <BillingSelector
-      :model-value="selectBilling"
-      @update:model-value="$emit('update:select-billing', !selectBilling)"
+      v-model="store.$state.isYearlyOrMonthly"
       label-left="Yearly"
       label-right="Monthly"></BillingSelector>
   </section>

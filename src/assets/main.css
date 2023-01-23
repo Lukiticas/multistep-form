@@ -41,6 +41,10 @@
     color: var(--bg-accent);
 }
 
+.text-accent-blue {
+    color: var(--accent);
+}
+
 .text-error {
     color: var(--accent-error)
 }

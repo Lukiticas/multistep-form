@@ -18,7 +18,7 @@
     <span>
       <ToggleSwitch
         :model-value="modelValue"
-        @update:model-value="$emit('update:modelValue', modelValue)" />
+        @update:model-value="$emit('update:modelValue', !modelValue)" />
     </span>
     <span
       class="billing-toggler__labels"
