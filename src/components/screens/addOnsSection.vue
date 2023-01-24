@@ -1,14 +1,14 @@
 <script setup>
   import { computed, inject, onMounted, ref, watch } from "vue";
-  import AddonsCard from "@/components/AddonsCard.vue";
+  import AddonsCard from "@/components/bases/AddonsCard.vue";
   import createCard from "@/utils/createCard";
 
-  const props = defineProps(["add-ons"]);
   const emit = defineEmits(["is-valid"]);
   const store = inject("store");
+  const addons = inject("addons");
 
   const cards = computed(() => {
-    return createCard(props.addOns, store.period);
+    return createCard(addons, store.period);
   });
 
   const cardSelected = ref([]);

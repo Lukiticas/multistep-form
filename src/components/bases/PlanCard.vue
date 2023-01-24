@@ -1,5 +1,6 @@
 <script setup>
   const props = defineProps({
+    onError: Boolean,
     isActive: Boolean,
     iconName: String,
     title: String,
@@ -13,13 +14,13 @@
   });
 
   const getIcon = () =>
-    new URL(`../assets/images/${props.iconName}`, import.meta.url);
+    new URL(`../../assets/images/${props.iconName}`, import.meta.url);
 </script>
 
 <template>
   <article
     class="plan-card bg-secundary"
-    :class="{ 'bg-terciary outlined': isActive }">
+    :class="{ 'bg-terciary outlined': isActive, 'on-error': onError }">
     <img class="plan-card__image" :src="getIcon()" alt="" />
     <div class="plan-card__details">
       <p class="plan-card__title text-primary semi-bold">{{ title }}</p>
@@ -36,17 +37,8 @@
 </template>
 
 <style scoped>
-  .v-enter-active,
-  .v-leave-active {
-    transition: all 300ms linear;
-  }
-
-  .v-enter-from,
-  .v-leave-to {
-    opacity: 0;
-  }
-
   .plan-card {
+    font-size: 1rem;
     outline: 0.15rem solid var(--bg-quarternary);
     border-radius: 0.5rem;
     padding: 1rem;
@@ -56,7 +48,6 @@
     justify-content: start;
     flex-flow: column nowrap;
     cursor: pointer;
-
     transition: all 100ms ease;
   }
 
@@ -70,18 +61,28 @@
   }
 
   .plan-card__image {
-    margin-block-end: 2rem;
+    margin-block-end: 2em;
+    transition: transform 250ms ease;
   }
 
   .plan-card__title {
-    font-size: 1.1rem;
+    font-size: 1.1em;
   }
   .plan-card__subtitle {
-    font-size: 1rem;
+    font-size: 1em;
   }
 
   .plan-card__promo {
-    font-size: 0.9rem;
+    font-size: 0.9em;
+  }
+
+  .on-error {
+    outline-color: var(--accent-error);
+    animation: horizontal-shaking 150ms linear;
+  }
+
+  .plan-card:hover .plan-card__image {
+    transform: scale(1.1) rotateX(360deg);
   }
 
   @media only screen and (max-width: 800px) {
@@ -93,7 +94,25 @@
 
     .plan-card__image {
       margin: 0;
-      margin-block-start: 0.2rem;
+      margin-block-start: 0.2em;
+    }
+  }
+
+  @keyframes horizontal-shaking {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(5px);
+    }
+    50% {
+      transform: translateX(-5px);
+    }
+    75% {
+      transform: translateX(5px);
+    }
+    100% {
+      transform: translateX(0);
     }
   }
 </style>

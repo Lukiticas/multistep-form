@@ -1,16 +1,16 @@
 <script setup>
-  import { inject, defineEmits } from "vue";
+  import { inject } from "vue";
+
+  const emit = defineEmits(["confirm-form", "go-back-to-plan", "is-valid"]);
   const store = inject("store");
 
   const plans = store.getPlanPrice;
   const addons = store.getAddons;
   const total = store.getTotal;
 
-  const emit = defineEmits(["confirm-form"]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    emit("confirm-form");
+    emit("is-valid", true);
   };
 </script>
 
@@ -22,7 +22,7 @@
           <p class="plan-price text-primary bold">
             {{ plans.name }} ({{ plans.period.frequency }})
           </p>
-          <a href="#"
+          <a href="#" @click="$emit('go-back-to-plan')"
             ><span class="text-secundary regular link">Change</span></a
           >
         </div>
@@ -83,13 +83,13 @@
   }
 
   .plan-price-addon--title {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .summary-panel__plan__details {
     text-transform: capitalize;
     font-size: 1rem;
-    line-height: 1.1;
+    line-height: 1.5;
   }
 
   .summary-panel__summary {
@@ -102,7 +102,7 @@
   }
 
   .plan-price {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   a {

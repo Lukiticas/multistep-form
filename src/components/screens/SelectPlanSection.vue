@@ -1,22 +1,21 @@
 <script setup>
   import { watch, ref, computed, inject, onMounted } from "vue";
-  import PlanCard from "@/components/PlanCard.vue";
-  import BillingSelector from "@/components/BillingSelector.vue";
+
+  import BillingSelector from "@/components/layout/BillingSelector.vue";
+  import PlanCard from "@/components/bases/PlanCard.vue";
+
   import createCard from "@/utils/createCard";
 
-  const props = defineProps({
-    plans: {
-      type: Object,
-      required: true,
-    },
-  });
+  const emit = defineEmits(["is-valid"]);
 
   const store = inject("store");
-  const emit = defineEmits(["is-valid"]);
+  const plans = inject("plans");
+
   const cardSelected = ref([]);
+  const onError = ref(false);
 
   const cards = computed(() => {
-    return createCard(props.plans, store.period);
+    return createCard(plans, store.period);
   });
 
   const selectOne = (e) => {
@@ -28,11 +27,16 @@
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!cardSelected.value.length) return;
+    if (!cardSelected.value.length) {
+      onError.value = true;
+      return;
+    }
+    onError.value = false;
     emit("is-valid", true);
   };
 
   watch(cardSelected, () => {
+    onError.value = false;
     store.planSelected = cardSelected.value;
   });
 
@@ -70,11 +74,12 @@
           :icon-name="card.iconName"
           :period="card.period"
           :promo="card.promo"
+          :on-error="onError"
           :pricing="card.pricing"></PlanCard>
       </label>
     </form>
     <BillingSelector
-      v-model="store.$state.isYearlyOrMonthly"
+      v-model="store.isYearlyOrMonthly"
       label-left="Yearly"
       label-right="Monthly"></BillingSelector>
   </section>

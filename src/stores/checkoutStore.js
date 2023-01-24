@@ -42,21 +42,34 @@ export const useCheckoutStore = defineStore("ckeckout", () => {
 
   const getTotal = computed(() => {
     const pricePlan = planSelected.value[0].pricing;
-    const addonsTotal = addOnsSelected.value
-      .map((el) => el.pricing)
-      .reduce((a, b) => a + b);
+    const addonsTotal = addOnsSelected.value.length
+      ? addOnsSelected.value.map((el) => el.pricing).reduce((a, b) => a + b)
+      : [];
     const total = pricePlan + addonsTotal;
     return returnFormated("total", total);
   });
 
+  const reset = () => {
+    personalInfo.value = {
+      name: "",
+      email: "",
+      phone: "",
+    };
+
+    planSelected.value = [];
+    addOnsSelected.value = [];
+    isYearlyOrMonthly.value = true;
+  };
+
   return {
-    getTotal,
-    getAddons,
-    getPlanPrice,
     isYearlyOrMonthly,
     addOnsSelected,
     personalInfo,
     planSelected,
+    getPlanPrice,
+    getAddons,
+    getTotal,
     period,
+    reset,
   };
 });

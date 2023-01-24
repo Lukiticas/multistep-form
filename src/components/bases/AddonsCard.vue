@@ -1,21 +1,3 @@
-<template>
-  <label class="addon-card text-primary" :for="title">
-    <input
-      name="addons"
-      class="addon-card__checkbox text-accent-blue"
-      type="checkbox"
-      alt="choose a addon"
-      :checked="checked" />
-    <div class="addon-card__details">
-      <p class="text-primary bold">{{ title }}</p>
-      <span class="text-secundary regular">{{ description }}</span>
-    </div>
-    <span class="addon-card__pricing text-accent-blue regular">
-      +${{ pricing }}/{{ period }}
-    </span>
-  </label>
-</template>
-
 <script setup>
   defineProps({
     value: Object,
@@ -29,16 +11,35 @@
   defineEmits(["update:model-value"]);
 </script>
 
+<template>
+  <article class="addon-card text-primary">
+    <label for="addons" v-show="false"></label>
+    <input
+      name="addons"
+      class="addon-card__checkbox text-accent-blue"
+      type="checkbox"
+      alt="choose a addon"
+      :checked="checked" />
+    <div class="addon-card__details">
+      <p class="text-primary bold">{{ title }}</p>
+      <span class="text-secundary regular">{{ description }}</span>
+    </div>
+    <span class="addon-card__pricing text-accent-blue regular">
+      +${{ pricing }}/{{ period }}
+    </span>
+  </article>
+</template>
+
 <style scoped>
   .addon-card {
     outline: 0.1rem solid var(--bg-quarternary);
-    padding: 1.5rem 1.5rem;
+    padding: 1.2rem 1.5rem;
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 1.5rem;
     font-size: 1rem;
-    border-radius: 0.6rem;
+    border-radius: 0.6em;
     transition: all 200ms ease;
     cursor: pointer;
   }
@@ -54,16 +55,16 @@
   }
 
   .addon-card__pricing {
-    font-size: 0.9rem;
+    font-size: 1em;
   }
 
   .addon-card__details p {
-    font-size: 1rem;
-    line-height: 1.1;
+    font-size: 1em;
+    line-height: 1.3;
   }
 
   .addon-card__details span {
-    font-size: 0.85rem;
+    font-size: 0.9em;
   }
 
   .addon-card__checkbox {
@@ -110,7 +111,7 @@
     .addon-card {
       padding: 1rem;
       gap: 1rem;
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
   }
 </style>

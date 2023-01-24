@@ -1,20 +1,21 @@
 <script setup>
+  import { ref } from "vue";
+  import { nanoid } from "nanoid";
+
   defineProps(["modelValue"]);
   defineEmits(["update:modelValue"]);
+  const id = ref(nanoid());
 </script>
 
 <template>
-  <label
-    class="toggle-button"
-    :class="{ active: !modelValue }"
-    for="toggle-button-id">
+  <label class="toggle-button" :class="{ active: !modelValue }" :for="id">
     <input
       :value="modelValue"
-      @input="$emit('update:modelValue', modelValue)"
+      @input="$emit('update:modelValue', !modelValue)"
       class="toggle-button__checkbox"
       alt="toggle between yearly and monthly"
       type="checkbox"
-      id="toggle-button-id" />
+      :id="id" />
     <span class="toggle-button__switch"></span>
   </label>
 </template>
@@ -31,6 +32,10 @@
     position: absolute;
     width: 1px;
     height: 1px;
+  }
+
+  .toggle-button:hover .toggle-button__switch {
+    scale: 1.1;
   }
 
   .toggle-button__switch {

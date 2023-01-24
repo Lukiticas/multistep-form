@@ -1,25 +1,5 @@
-<template>
-  <section class="stepper">
-    <picture class="background">
-      <!--suppress HtmlUnknownTarget -->
-      <source
-        srcset="@/assets/images/bg-sidebar-mobile.svg"
-        media="(max-width: 800px)" />
-      <img src="@/assets/images/bg-sidebar-desktop.svg" alt="" />
-    </picture>
-    <div class="stepper-details">
-      <StepperStep
-        v-for="(step, idx) in steps"
-        :key="step.title"
-        :title="step.title"
-        :order="idx + 1"
-        :active="idx === currentIndex"></StepperStep>
-    </div>
-  </section>
-</template>
-
 <script setup>
-  import StepperStep from "@/components/StepperStep.vue";
+  import StepperStep from "@/components/bases/StepperStep.vue";
   defineProps({
     steps: {
       type: Array,
@@ -32,6 +12,26 @@
   });
 </script>
 
+<template>
+  <section class="stepper">
+    <picture class="stepper__background">
+      <!--suppress HtmlUnknownTarget -->
+      <source
+        srcset="@/assets/images/bg-sidebar-mobile.svg"
+        media="(max-width: 800px)" />
+      <img src="@/assets/images/bg-sidebar-desktop.svg" alt="" />
+    </picture>
+    <div class="stepper__details">
+      <StepperStep
+        v-for="(step, idx) in steps"
+        :key="step.title"
+        :title="step.title"
+        :order="idx + 1"
+        :active="idx === currentIndex"></StepperStep>
+    </div>
+  </section>
+</template>
+
 <style scoped>
   .stepper {
     width: 17.12rem;
@@ -40,7 +40,7 @@
     z-index: 10;
   }
 
-  .background {
+  .stepper__background {
     position: absolute;
     inset: 0;
     z-index: -1;
@@ -48,14 +48,14 @@
     border-radius: 1rem;
   }
 
-  .background img {
+  .stepper__background img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     position: relative;
   }
 
-  .stepper-details {
+  .stepper__details {
     z-index: 10;
     width: 100%;
     height: 100%;
@@ -72,11 +72,11 @@
       height: 10.8rem;
     }
 
-    .background {
+    .stepper__background {
       border-radius: 0;
     }
 
-    .stepper-details {
+    .stepper__details {
       display: flex;
       flex-flow: row nowrap;
       gap: 0.2rem;

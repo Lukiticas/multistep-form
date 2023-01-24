@@ -1,5 +1,5 @@
 <script setup>
-  import ToggleSwitch from "@/components/ToggleSwitch.vue";
+  import ToggleSwitch from "@/components/bases/ToggleSwitch.vue";
 
   defineProps({ modelValue: Boolean, labelRight: String, labelLeft: String });
   defineEmits(["update:modelValue"]);
@@ -18,7 +18,7 @@
     <span>
       <ToggleSwitch
         :model-value="modelValue"
-        @update:model-value="$emit('update:modelValue', !modelValue)" />
+        @update:model-value="$emit('update:modelValue', $event)" />
     </span>
     <span
       class="billing-toggler__labels"

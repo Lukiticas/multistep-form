@@ -3,6 +3,8 @@
 *::after {
   box-sizing: border-box;
   margin: 0;
+  transition: background-color 100ms ease, color 100ms ease;
+  line-height: 1.5;
 }
 
 /* reponsive */
@@ -20,20 +22,29 @@
 /* COLORS */
 :root {
   /*LIGHT MODE*/
-  --marineblue: hsl(213, 96%, 18%);
+  --strawberryred: hsl(354, 84%, 57%);
   --purplishblue: hsl(243, 100%, 62%);
   --pastelblue: hsl(228, 100%, 84%);
+  --marineblue: hsl(213, 96%, 18%);
   --lightblue: hsl(206, 94%, 87%);
-  --strawberryred: hsl(354, 84%, 57%);
 
+  --alabaster: hsl(231, 100%, 99%);
   --coolgray: hsl(231, 11%, 63%);
   --lightgray: hsl(229, 24%, 87%);
   --magnolia: hsl(217, 100%, 97%);
-  --alabaster: hsl(231, 100%, 99%);
   --white: hsl(0, 0%, 100%);
 
   /*DARK MODE*/
   /*=========*/
+  --darkpurple: rgb(50, 45, 79);
+  --lightpurple: rgb(80, 73, 126);
+  --blueishpurple: rgb(73, 64, 139);
+  --lightblueishpurple: rgb(62, 57, 102);
+  --passivepurple: rgb(168, 147, 255);
+
+  --neonblue: rgb(98, 89, 255);
+  --passiveneonblue: rgb(190, 224, 230);
+  --neondarkblue: rgb(72, 62, 255);
 
   font-family: Ubuntu, sans-serif;
 }
@@ -44,6 +55,7 @@
   --bg-terciary: var(--alabaster);
   --bg-quarternary: var(--lightgray);
   --bg-accent: var(--lightblue);
+  --bg-button: var(--marineblue);
   --w-primary: var(--marineblue);
   --w-secundary: var(--coolgray);
   --w-terciary: var(--white);
@@ -56,16 +68,17 @@
 
 :root.dark {
   /*TODO Create new dark mode pallete*/
-  --bg-primary: var(--magnolia);
-  --bg-secundary: var(--white);
-  --bg-terciary: var(--alabaster);
-  --bg-quarternary: var(--lightgray);
-  --bg-accent: var(--lightblue);
-  --w-primary: var(--marineblue);
-  --w-secundary: var(--coolgray);
-  --w-terciary: var(--white);
+  --bg-primary: var(--lightblueishpurple);
+  --bg-secundary: var(--darkpurple);
+  --bg-terciary: var(--lightblueishpurple);
+  --bg-quarternary: var(--lightpurple);
+  --bg-accent: var(--neonblue);
+  --bg-button: var(--neondarkblue);
+  --w-primary: var(--white);
+  --w-secundary: var(--lightgray);
+  --w-terciary: var(--magnolia);
 
-  --accent: var(--purplishblue);
+  --accent: var(--neonblue);
   --accent-error: var(--strawberryred);
   --accent-sucess: var(--purplishblue);
 }
@@ -74,8 +87,8 @@
 body {
   background-color: var(--bg-primary);
   min-height: 100vh;
-  line-height: 1.6;
-  font-size: 15px;
+  max-width: 100vw;
+  overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -32,7 +32,7 @@
   <div class="form-input" :class="{ error: isOnError }">
     <label class="form-input__label text-primary" :for="id"
       >{{ label }}
-      <span v-if="isOnError" class="form-input__error bold">{{
+      <span v-if="isOnError" class="form-input__error semi-bold">{{
         errorMessage
       }}</span></label
     >
@@ -48,11 +48,11 @@
 
 <style scoped>
   .form-input {
-    font-size: 1rem;
     display: flex;
     flex-flow: column nowrap;
-    gap: 0.3rem;
+    gap: 0.4rem;
     margin-bottom: 1rem;
+    font-size: 1rem;
   }
 
   .form-input__label {
@@ -63,22 +63,23 @@
 
   .form-input__label,
   .form-input__error {
-    font-size: 1rem;
+    font-size: 0.9em;
   }
 
   .form-input__input {
-    font-size: 1rem;
+    font-size: 1em;
     border: none;
-    outline: var(--bg-quarternary) solid 0.1rem;
+    outline: var(--bg-quarternary) solid 0.1em;
     border-radius: 0.5rem;
-    padding: 0.9rem 1rem;
-
+    padding: 0.8em 1em;
     transition: all 100ms ease-in;
+    line-height: 1;
   }
 
   .form-input__input::placeholder {
-    font-size: 1rem;
+    font-size: 1em;
     color: var(--w-secundary);
+    font-weight: 500;
   }
 
   .form-input__input:hover,

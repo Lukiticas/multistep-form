@@ -9,22 +9,23 @@
 <template>
   <article class="step">
     <div
-      class="step-icon"
+      class="step__icon"
       :class="{
-        'active bg-accent text-primary': active,
+        'step__icon--active bg-accent text-primary': active,
         'text-terciary': !active,
       }">
       {{ order }}
     </div>
-    <div class="step-details">
+    <div class="step__details">
       <span class="text-quartenary regular">STEP {{ order }}</span>
-      <p class="step-title semi-bold text-terciary">{{ title }}</p>
+      <p class="step__title semi-bold text-terciary">{{ title }}</p>
     </div>
   </article>
 </template>
 
 <style scoped>
   .step {
+    font-size: 1rem;
     display: grid;
     grid-template-columns: auto 1fr;
     justify-content: center;
@@ -33,26 +34,27 @@
     text-transform: uppercase;
   }
 
-  .step-title {
-    font-size: 1.1rem;
+  .step__title {
+    font-size: 1.1em;
   }
 
-  .step-icon {
-    width: 2rem;
+  .step__icon {
+    width: 2em;
     display: grid;
     place-items: center;
     border-radius: 100vw;
     aspect-ratio: 1/1;
-    font-size: 1rem;
+    font-size: 1em;
     outline: 0.1rem solid var(--w-terciary);
+    transition: all 200ms ease;
   }
 
-  .active.active {
-    outline-color: var(--bg-accent);
+  .step__icon--active {
+    outline-color: var(--bg-primary);
   }
 
   @media only screen and (max-width: 800px) {
-    .step-details {
+    .step__details {
       display: none;
     }
   }

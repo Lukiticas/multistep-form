@@ -1,16 +1,3 @@
-<template>
-  <button
-    class="button bold"
-    :class="{
-      'previous bg-secundary text-secundary semi-bold':
-        styleType === 'previous',
-      'next bg-quartenary text-terciary semi-bold': styleType === 'next',
-      disabled: show,
-    }">
-    {{ title }}
-  </button>
-</template>
-
 <script setup>
   defineProps({
     title: {
@@ -32,6 +19,19 @@
   });
 </script>
 
+<template>
+  <button
+    class="button bold"
+    :class="{
+      'button--previous bg-secundary text-secundary semi-bold':
+        styleType === 'previous',
+      'button--next bg-button text-terciary semi-bold': styleType === 'next',
+      'button--disabled': show,
+    }">
+    {{ title }}
+  </button>
+</template>
+
 <style scoped>
   .button {
     font-size: 1rem;
@@ -44,15 +44,15 @@
     text-transform: capitalize;
   }
 
-  .button.next:hover {
+  .button--next:hover {
     filter: opacity(0.8) saturate(2);
   }
 
-  .button.previous:hover {
+  .button--previous:hover {
     color: var(--w-primary);
   }
 
-  .disabled {
+  .button--disabled {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
