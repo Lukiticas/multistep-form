@@ -54,14 +54,14 @@
     <FormInput
       v-model.trim="store.personalInfo.email"
       label="Email Address"
-      type="email"
+      :type="'email'"
       placeholder="e.g. stephenking@lorem.com"
       :error-message="v$.email.$errors[0]?.$message"
       :is-on-error="v$.email.$error"></FormInput>
     <FormInput
       v-model.trim.number="store.personalInfo.phone"
       label="Phone Number"
-      type="number"
+      :type="'number'"
       placeholder="e.g. +1 234 567 890"
       :error-message="v$.phone.$errors[0]?.$message"
       :is-on-error="v$.phone.$error"></FormInput>

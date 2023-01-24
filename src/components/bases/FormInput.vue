@@ -21,6 +21,11 @@
       required: false,
       default: "",
     },
+    type: {
+      type: String,
+      required: false,
+      default: "text",
+    },
   });
 
   defineEmits(["update:modelValue"]);
@@ -39,7 +44,7 @@
     <input
       class="form-input__input text-primary bold bg-secundary"
       :id="id"
-      :type="$attrs.type || 'text'"
+      :type="type || 'text'"
       :placeholder="placeholder"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)" />
