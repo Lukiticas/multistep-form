@@ -17,7 +17,9 @@
       {{ order }}
     </div>
     <div class="step__details">
-      <span class="text-quartenary regular">STEP {{ order }}</span>
+      <span class="step__subtitle text-quartenary regular"
+        >STEP {{ order }}</span
+      >
       <p class="step__title semi-bold text-terciary">{{ title }}</p>
     </div>
   </article>
@@ -47,6 +49,10 @@
     font-size: 1em;
     outline: 0.1rem solid var(--w-terciary);
     transition: all 200ms ease;
+  }
+
+  .step__subtitle {
+    font-size: 0.9em;
   }
 
   .step__icon--active {

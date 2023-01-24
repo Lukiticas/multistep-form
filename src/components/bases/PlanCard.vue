@@ -23,10 +23,10 @@
     :class="{ 'bg-terciary outlined': isActive, 'on-error': onError }">
     <img class="plan-card__image" :src="getIcon()" alt="" />
     <div class="plan-card__details">
-      <p class="plan-card__title text-primary semi-bold">{{ title }}</p>
-      <span class="plan-card__subtitle text-secundary regular"
-        >${{ pricing }}/{{ period }}</span
-      >
+      <h3 class="plan-card__title text-primary semi-bold">{{ title }}</h3>
+      <p class="plan-card__subtitle text-secundary regular">
+        ${{ pricing }}/{{ period }}
+      </p>
       <Transition>
         <div v-show="promo" class="plan-card__promo text-primary regular">
           {{ promo }}
@@ -62,7 +62,7 @@
 
   .plan-card__image {
     margin-block-end: 2em;
-    transition: transform 250ms ease;
+    transition: transform 550ms ease;
   }
 
   .plan-card__title {

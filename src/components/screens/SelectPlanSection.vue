@@ -54,14 +54,15 @@
   });
 </script>
 <template>
-  <section class="select-plan-section">
+  <div class="select-plan-section">
     <form
       v-if="plans"
       id="select-plan-form"
       class="pricing-cards"
       @submit.prevent="handleSubmit">
-      <label v-for="(card, idx) in cards" :key="idx">
+      <label v-for="(card, idx) in cards" :for="card.title" :key="idx">
         <input
+          :id="card.title"
           type="checkbox"
           name="card-selected"
           :value="card"
@@ -82,7 +83,7 @@
       v-model="store.isYearlyOrMonthly"
       label-left="Yearly"
       label-right="Monthly"></BillingSelector>
-  </section>
+  </div>
 </template>
 
 <style scoped>

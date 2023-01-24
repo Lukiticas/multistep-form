@@ -79,7 +79,7 @@
 
 <template>
   <main class="center-on-screen">
-    <section class="bg-primary app-main">
+    <div class="bg-primary app-main">
       <SectionStepper
         :steps="stepper.steps.value"
         :current-index="stepper.currentStep.value"></SectionStepper>
@@ -106,7 +106,7 @@
           @handle-right-clicked="checkFormConfirmation"></BottomNavegation>
       </section>
       <ThankYou v-else @reset-form="reset"></ThankYou>
-    </section>
+    </div>
   </main>
 </template>
 

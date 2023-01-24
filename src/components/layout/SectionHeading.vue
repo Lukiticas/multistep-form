@@ -13,7 +13,7 @@
 
 <template>
   <header class="heading-title">
-    <h2 class="heading-title__title bold text-primary">{{ title }}</h2>
+    <h1 class="heading-title__title bold text-primary">{{ title }}</h1>
     <p class="heading-title__description regular text-secundary">
       {{ description }}
     </p>

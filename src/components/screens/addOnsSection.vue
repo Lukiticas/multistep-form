@@ -27,30 +27,28 @@
 </script>
 
 <template>
-  <section>
-    <form id="add-ons-form" class="addons-list" @submit.prevent="handleSubmit">
-      <label
-        v-for="(card, idx) in cards"
-        :for="card.title"
-        :key="card.title + idx">
-        <input
-          :id="card.title"
-          type="checkbox"
-          name="card-selected"
-          :value="card"
-          v-model="cardSelected"
-          style="display: none" />
-        <AddonsCard
-          :title="card.title"
-          :description="card.description"
-          :period="card.period"
-          :pricing="card.pricing"
-          :checked="
-            cardSelected.some((el) => el.title === card.title)
-          "></AddonsCard>
-      </label>
-    </form>
-  </section>
+  <form id="add-ons-form" class="addons-list" @submit.prevent="handleSubmit">
+    <label
+      v-for="(card, idx) in cards"
+      :for="card.title"
+      :key="card.title + idx">
+      <input
+        :id="card.title"
+        type="checkbox"
+        name="card-selected"
+        :value="card"
+        v-model="cardSelected"
+        style="display: none" />
+      <AddonsCard
+        :title="card.title"
+        :description="card.description"
+        :period="card.period"
+        :pricing="card.pricing"
+        :checked="
+          cardSelected.some((el) => el.title === card.title)
+        "></AddonsCard>
+    </label>
+  </form>
 </template>
 
 <style scoped>

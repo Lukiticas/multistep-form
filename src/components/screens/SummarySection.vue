@@ -16,12 +16,12 @@
 
 <template>
   <form id="summary-form" @submit="handleSubmit">
-    <section class="summary-panel bg-terciary">
+    <div class="summary-panel bg-terciary">
       <article class="summary-panel__plan">
         <div class="summary-panel__plan__details">
-          <p class="plan-price text-primary bold">
+          <h3 class="plan-price text-primary bold">
             {{ plans.name }} ({{ plans.period.frequency }})
-          </p>
+          </h3>
           <a href="#" @click="$emit('go-back-to-plan')"
             ><span class="text-secundary regular link">Change</span></a
           >
@@ -35,19 +35,19 @@
           v-for="addon in addons"
           class="summary-panel__addons"
           :key="addon.name">
-          <p class="plan-price-addon--title regular text-quartenary">
+          <h3 class="plan-price-addon--title regular text-quartenary">
             {{ addon.name }}
-          </p>
+          </h3>
           <span class="plan-price-addon--price text-primary regular"
             >${{ addon.price }}/{{ addon.period.suffix }}</span
           >
         </article>
       </div>
-    </section>
+    </div>
     <section class="summary-panel__summary">
-      <span class="regular text-secundary"
-        >total (per {{ total.period.name }})</span
-      >
+      <h3 class="regular text-secundary">
+        total (per {{ total.period.name }})
+      </h3>
       <span class="summary-panel__summary--title text-accent-blue bold"
         >${{ total.price }}/{{ total.period.suffix }}</span
       >

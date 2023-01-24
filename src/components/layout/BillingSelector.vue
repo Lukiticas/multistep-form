@@ -15,11 +15,9 @@
       }"
       >{{ labelRight }}</span
     >
-    <span>
-      <ToggleSwitch
-        :model-value="modelValue"
-        @update:model-value="$emit('update:modelValue', $event)" />
-    </span>
+    <ToggleSwitch
+      :model-value="modelValue"
+      @update:model-value="$emit('update:modelValue', $event)" />
     <span
       class="billing-toggler__labels"
       :class="{

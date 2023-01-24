@@ -18,11 +18,10 @@
       name="addons"
       class="addon-card__checkbox text-accent-blue"
       type="checkbox"
-      alt="choose a addon"
       :checked="checked" />
     <div class="addon-card__details">
-      <p class="text-primary bold">{{ title }}</p>
-      <span class="text-secundary regular">{{ description }}</span>
+      <h3 class="text-primary bold">{{ title }}</h3>
+      <p class="text-secundary regular">{{ description }}</p>
     </div>
     <span class="addon-card__pricing text-accent-blue regular">
       +${{ pricing }}/{{ period }}
@@ -58,12 +57,12 @@
     font-size: 1em;
   }
 
-  .addon-card__details p {
+  .addon-card__details h3 {
     font-size: 1em;
     line-height: 1.3;
   }
 
-  .addon-card__details span {
+  .addon-card__details p {
     font-size: 0.9em;
   }
 

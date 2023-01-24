@@ -13,7 +13,7 @@
 </script>
 
 <template>
-  <section class="stepper">
+  <aside class="stepper">
     <picture class="stepper__background">
       <!--suppress HtmlUnknownTarget -->
       <source
@@ -29,7 +29,7 @@
         :order="idx + 1"
         :active="idx === currentIndex"></StepperStep>
     </div>
-  </section>
+  </aside>
 </template>
 
 <style scoped>
