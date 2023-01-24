@@ -1,19 +1,14 @@
 <script setup>
   import { computed, inject, onMounted, ref, watch } from "vue";
   import AddonsCard from "@/components/AddonsCard.vue";
+  import createCard from "@/utils/createCard";
 
   const props = defineProps(["add-ons"]);
   const emit = defineEmits(["is-valid"]);
   const store = inject("store");
 
   const cards = computed(() => {
-    if (!props.addOns) return [];
-    return props.addOns.map((addon) => ({
-      title: addon.title,
-      description: addon.subtitle,
-      period: store.period[1],
-      pricing: addon.pricing[store.period[0]],
-    }));
+    return createCard(props.addOns, store.period);
   });
 
   const cardSelected = ref([]);

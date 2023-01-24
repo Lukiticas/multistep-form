@@ -21,6 +21,10 @@
     background-color: var(--bg-accent);
 }
 
+.bg-accent-purple {
+    background-color: var(--accent);
+}
+
 .text-primary {
     color: var(--w-primary);
 }

@@ -5,8 +5,10 @@ const useStepper = (stepsItems) => {
 
   const currentStep = ref(0);
   const currentStepItem = computed(() => steps.value[currentStep.value]);
-  const isFirstStep = currentStep.value === 0;
-  const isLastStep = currentStep.value === steps.value.length - 1;
+  const isFirstStep = computed(() => currentStep.value === 0);
+  const isLastStep = computed(
+    () => currentStep.value === steps.value.length - 1
+  );
 
   const handleGoBack = () => {
     currentStep.value = currentStep.value - 1;
@@ -22,7 +24,7 @@ const useStepper = (stepsItems) => {
   };
   const handleIsValid = (e) => {
     currentStepItem.value.isValid = e;
-    if (isLastStep) return;
+    if (isLastStep.value) return;
     evaluateNext();
   };
 

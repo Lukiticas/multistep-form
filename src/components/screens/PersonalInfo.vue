@@ -27,7 +27,7 @@
 
   const store = inject("store");
 
-  const v$ = useVuelidate(rules, store.$state.personalInfo);
+  const v$ = useVuelidate(rules, store.personalInfo);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,21 +41,21 @@
 <template>
   <form id="form-main" @submit="handleSubmit">
     <FormInput
-      v-model="store.$state.personalInfo.name"
+      v-model="store.personalInfo.name"
       label="Name"
       placeholder="e.g. Stephen King"
       :error-message="v$.name.$errors[0]?.$message"
       :is-on-error="v$.name.$error">
     </FormInput>
     <FormInput
-      v-model="store.$state.personalInfo.email"
+      v-model="store.personalInfo.email"
       label="Email Address"
       type="email"
       placeholder="e.g. stephenking@lorem.com"
       :error-message="v$.email.$errors[0]?.$message"
       :is-on-error="v$.email.$error"></FormInput>
     <FormInput
-      v-model.trim.number="store.$state.personalInfo.phone"
+      v-model.trim.number="store.personalInfo.phone"
       label="Phone Number"
       type="number"
       placeholder="e.g. +1 234 567 890"

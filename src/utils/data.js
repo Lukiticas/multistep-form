@@ -30,24 +30,24 @@ const addons = [
     title: "Online Service",
     subtitle: "Acess to multiplayer games",
     pricing: {
-      monthly: 1,
-      yearly: 10,
+      monthly: { value: 1, promo: "" },
+      yearly: { value: 10, promo: "" },
     },
   },
   {
     title: "Larger Storage",
     subtitle: "Extra 1TB of cloud save",
     pricing: {
-      monthly: 2,
-      yearly: 20,
+      monthly: { value: 2, promo: "" },
+      yearly: { value: 20, promo: "" },
     },
   },
   {
     title: "Customizable Profile",
     subtitle: "Custom themes on your profile",
     pricing: {
-      monthly: 2,
-      yearly: 20,
+      monthly: { value: 2, promo: "" },
+      yearly: { value: 20, promo: "" },
     },
   },
 ];

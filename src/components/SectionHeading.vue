@@ -30,4 +30,14 @@
   .description {
     font-size: 1.2rem;
   }
+
+  @media screen and (max-width: 400px) {
+    .title {
+      font-size: 1.5rem;
+    }
+
+    .description {
+      font-size: 1rem;
+    }
+  }
 </style>

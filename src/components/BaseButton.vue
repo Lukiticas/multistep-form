@@ -2,8 +2,9 @@
   <button
     class="button bold"
     :class="{
-      'previous bg-secundary text-secundary': styleType === 'previous',
-      'next bg-quartenary text-terciary': styleType === 'next',
+      'previous bg-secundary text-secundary semi-bold':
+        styleType === 'previous',
+      'next bg-quartenary text-terciary semi-bold': styleType === 'next',
       disabled: show,
     }">
     {{ title }}

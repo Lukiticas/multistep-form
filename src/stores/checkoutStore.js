@@ -8,32 +8,46 @@ export const useCheckoutStore = defineStore("ckeckout", () => {
     phone: "",
   });
 
-  const planSelected = ref();
+  const planSelected = ref([]);
   const addOnsSelected = ref([]);
-
   const isYearlyOrMonthly = ref(true);
 
   const period = computed(() =>
-    isYearlyOrMonthly.value ? ["monthly", "mo"] : ["yearly", "yr"]
+    isYearlyOrMonthly.value
+      ? ["monthly", "mo", "month"]
+      : ["yearly", "yr", "year"]
   );
 
-  const getPlanPrice = computed(() => ({
-    name: planSelected.value[0].title,
-    price: planSelected.value[0].pricing,
-  }));
+  const returnFormated = (name, price) => {
+    return {
+      name: name,
+      price: price,
+      period: {
+        frequency: period.value[0],
+        suffix: period.value[1],
+        name: period.value[2],
+      },
+    };
+  };
+
+  const getPlanPrice = computed(() =>
+    returnFormated(planSelected.value[0].title, planSelected.value[0].pricing)
+  );
+
   const getAddons = computed(() => {
     return addOnsSelected.value.length
-      ? addOnsSelected.value.map((el) => ({
-          name: el.title,
-          price: el.pricing,
-        }))
+      ? addOnsSelected.value.map((el) => returnFormated(el.title, el.pricing))
       : [];
   });
 
-  const getTotal = computed(() => ({
-    name: "total",
-    price: [...getAddons.value, ...getPlanPrice.value],
-  }));
+  const getTotal = computed(() => {
+    const pricePlan = planSelected.value[0].pricing;
+    const addonsTotal = addOnsSelected.value
+      .map((el) => el.pricing)
+      .reduce((a, b) => a + b);
+    const total = pricePlan + addonsTotal;
+    return returnFormated("total", total);
+  });
 
   return {
     getTotal,

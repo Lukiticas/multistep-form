@@ -2,6 +2,7 @@
   import { watch, ref, computed, inject, onMounted } from "vue";
   import PlanCard from "@/components/PlanCard.vue";
   import BillingSelector from "@/components/BillingSelector.vue";
+  import createCard from "@/utils/createCard";
 
   const props = defineProps({
     plans: {
@@ -11,19 +12,11 @@
   });
 
   const store = inject("store");
-  const emit = defineEmits(["isValid"]);
-
+  const emit = defineEmits(["is-valid"]);
   const cardSelected = ref([]);
 
   const cards = computed(() => {
-    if (!props.plans) return [];
-    return props.plans.map((plan) => ({
-      title: plan.title,
-      iconName: plan.icon,
-      period: store.period[1],
-      pricing: plan.pricing[store.period[0]].value,
-      promo: plan.pricing[store.period[0]].promo,
-    }));
+    return createCard(props.plans, store.period);
   });
 
   const selectOne = (e) => {
@@ -42,6 +35,15 @@
   watch(cardSelected, () => {
     store.planSelected = cardSelected.value;
   });
+
+  watch(
+    () => store.period,
+    () => {
+      cardSelected.value = [];
+      store.addOnsSelected = [];
+      store.planSelected = [];
+    }
+  );
 
   onMounted(() => {
     cardSelected.value = store.planSelected || [];
