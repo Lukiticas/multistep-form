@@ -116,7 +116,7 @@
     max-width: 60rem;
     padding: 1rem;
     border-radius: 2rem;
-    box-shadow: rgba(0, 0, 0, 0.04) 0 3px 5px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
     display: grid;
     grid-template-columns: auto 1fr;
     background-color: var(--bg-secundary) !important;
@@ -161,6 +161,7 @@
       padding: 1.5rem;
       border-radius: 0.5rem;
       z-index: 1000;
+      box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
     }
 
     .main-content {
