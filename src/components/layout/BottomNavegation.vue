@@ -17,7 +17,6 @@
     <BaseButton
       :show="show"
       :title="titleLeft"
-      type="text"
       @click="$emit('handle-left-clicked', $event)"
       style-type="previous"></BaseButton>
     <BaseButton

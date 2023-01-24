@@ -13,7 +13,6 @@
       :value="modelValue"
       @input="$emit('update:modelValue', !modelValue)"
       class="toggle-button__checkbox"
-      alt="toggle between yearly and monthly"
       type="checkbox"
       :id="id" />
     <span class="toggle-button__switch"></span>
