@@ -7,7 +7,7 @@
 </script>
 
 <template>
-  <article class="step">
+  <div class="step">
     <div
       class="step__icon"
       :class="{
@@ -22,7 +22,7 @@
       >
       <p class="step__title semi-bold text-terciary">{{ title }}</p>
     </div>
-  </article>
+  </div>
 </template>
 
 <style scoped>
